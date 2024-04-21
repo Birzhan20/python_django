@@ -1,0 +1,34 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+    Shop index
+{% endblock %}
+
+    {% block body %}
+        {% autoescape on %}
+    <h1>Hello Shop Index!</h1>
+
+    <div>
+    <ul>
+        {% for name, price in products %}
+            <li>{{ name|add:"|" }} for ${{ price|add:"100" }}</li>
+            {% empty %}
+                No products here
+        {% endfor %}
+    </ul>
+    </div>
+        {% endautoescape %}
+
+    <div>
+    {% autoescape on %}
+        Time running: {{ time_running }}
+    {% endautoescape %}
+    </div>
+
+    <div>
+    {% autoescape on %}
+        {% lorem 3 p random %}
+    {% endautoescape %}
+    </div>
+
+{% endblock %}
