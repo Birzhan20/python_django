@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpRequest
 from django.contrib.auth.models import Group
 
 from .models import Product, Order
-from .forms import ProductForm
+from .forms import ProductForm, CreateOrder
 
 
 def shop_index(request: HttpRequest):
@@ -56,3 +56,10 @@ def orders_list(request: HttpRequest):
         "orders": Order.objects.select_related("user").prefetch_related("products").all(),
     }
     return render(request, 'shopapp/orders-list.html', context=context)
+
+
+def create_order(request: HttpRequest) -> HttpResponse:
+    context = {
+        "form": CreateOrder(),
+    }
+    return render(request, "requestdataapp/create-order.html", context=context)

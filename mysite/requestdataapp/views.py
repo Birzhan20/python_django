@@ -24,7 +24,7 @@ def user_form(request: HttpRequest) -> HttpResponse:
     return render(request, "requestdataapp/user-bio-form.html", context=context)
 
 
-def handle_file_uoload(request: HttpRequest) -> HttpResponse:
+def handle_file_upload(request: HttpRequest) -> HttpResponse:
 
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
