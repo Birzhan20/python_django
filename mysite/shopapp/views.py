@@ -58,8 +58,24 @@ def orders_list(request: HttpRequest):
     return render(request, 'shopapp/orders-list.html', context=context)
 
 
+# def create_order(request: HttpRequest) -> HttpResponse:
+#     context = {
+#         "form": CreateOrder(),
+#     }
+#     return render(request, "requestdataapp/create-order.html", context=context)
+
+
 def create_order(request: HttpRequest) -> HttpResponse:
+    if request.method == "POST":
+        form = CreateOrder(request.POST)
+        if form.is_valid():
+            form.save()
+            url = reverse("shopapp:products_list")
+            return redirect(url)
+    else:
+        form = CreateOrder()
     context = {
-        "form": CreateOrder(),
+        "form": form,
     }
-    return render(request, "requestdataapp/create-order.html", context=context)
+
+    return render(request, 'requestdataapp/create-order.html', context=context)
