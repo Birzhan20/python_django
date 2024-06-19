@@ -18,7 +18,7 @@ class CountRequestMiddleware:
         self.response_count = 0
         self.exception_count = 0
         self.last_request = {}
-        self.THROTTLE_TIME = 0.1  #sec
+        self.THROTTLE_TIME = 0.00000000001  #sec
         self.THROTTLE_MESSAGE = "Слишком много запросов, попробуйте позднее."
 
     def __call__(self, request: HttpRequest):
