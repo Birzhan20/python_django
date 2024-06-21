@@ -13,7 +13,14 @@
             <button type="submit">Update</button>
         </form>
     </div>
-<div>
-    <a href="{% url 'shopapp:product_details' pk=object.pk %}">Back to product #{{ object.pk }}</a>
-</div>
+    <div>
+        <a href="{% url 'shopapp:product_details' pk=object.pk %}">Back to product #{{ object.pk }}</a>
+    </div>
+
+    {% if perms.shopapp.add_product %}
+    <div>
+        <a href="{% url 'shopapp:create_product' %}">Create new product</a>
+    </div>
+    {% endif %}
+
 {% endblock %}

@@ -128,4 +128,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/admin/'
+LOGIN_REDIRECT_URL = 'myauth:about-me'
+LOGIN_URL = 'myauth:login'

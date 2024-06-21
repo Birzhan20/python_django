@@ -14,12 +14,18 @@
 
             <button type="submit">
                 Create
-            </buttonty>
+            </button>
         </form>
     </div>
 
 <div>
     <a href="{% url 'shopapp:products_list' %}">Back to products list</a>
 </div>
+
+{% if perms.shopapp.add_product %}
+    <div>
+        <a href="{% url 'shopapp:create_product' %}">Create another product</a>
+    </div>
+{% endif %}
 
 {% endblock %}

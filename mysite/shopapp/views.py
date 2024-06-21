@@ -4,14 +4,14 @@ from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from django.contrib.auth.models import Group
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from .models import Product, Order
 from .forms import ProductForm, CreateOrder, GroupForm
 from django.views import View
 
 
 class ShopIndexView(View):
-    def get(self, request: HttpRequest)-> HttpResponse:
+    def get(self, request: HttpRequest) -> HttpResponse:
         products =[
             ('Laptop', 1999),
             ('Desktop', 2999),
@@ -45,22 +45,29 @@ class ProductDetailView(DetailView):
     context_object_name = 'product'
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(UserPassesTestMixin, CreateView):
+    def test_func(self):
+        return self.request.user.is_superuser
     model = Product
     fields = 'name', 'price', 'description', 'discount'
     success_url = reverse_lazy('shopapp:products_list')
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Product
     fields = 'name', 'price', 'description', 'discount'
     template_name_suffix = '_update_form'
+    permission_required = 'shopapp.change_product'
 
     def get_success_url(self):
         return reverse(
             'shopapp:product_details',
             kwargs={'pk': self.object.pk},
         )
+
+    def test_func(self):
+        obj = self.get_object()
+        return self.request.user.is_superuser or obj.author == self.request.user
 
 
 class ProductDeleteView(DeleteView):
@@ -85,14 +92,15 @@ class ProductsListView(ListView):
         return context
 
 
-class OrdersListView(ListView):
+class OrdersListView(LoginRequiredMixin, ListView):
     queryset = (Order.objects.
                 select_related("user").
                 prefetch_related("products")
                 )
 
 
-class OrdersDetailView(DetailView):
+class OrdersDetailView(PermissionRequiredMixin, DetailView):
+    permission_required = "shopapp.view_order"
     queryset = (Order.objects.
                 select_related("user").
                 prefetch_related("products")
