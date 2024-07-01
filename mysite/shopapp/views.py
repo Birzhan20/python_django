@@ -45,11 +45,10 @@ class ProductDetailView(DetailView):
     context_object_name = 'product'
 
 
-class ProductCreateView(UserPassesTestMixin, CreateView):
-    def test_func(self):
-        return self.request.user
+class ProductCreateView(PermissionRequiredMixin, CreateView):
     model = Product
     fields = 'name', 'price', 'description', 'discount'
+    permission_required = "shopapp.add_product"
     success_url = reverse_lazy('shopapp:products_list')
 
 
