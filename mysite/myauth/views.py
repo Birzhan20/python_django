@@ -2,8 +2,9 @@ from django.contrib.auth.decorators import login_required, permission_required, 
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.urls import reverse, reverse_lazy
+from django.views import View
 from django.views.generic import TemplateView, CreateView
 
 from .models import Profile
@@ -83,5 +84,6 @@ def get_session_view(request: HttpRequest) -> HttpResponse:
     return HttpResponse(f'Session value: {value!r}')
 
 
-
-
+class FooBarView(View):
+    def get(self, request: HttpRequest) -> JsonResponse:
+        return JsonResponse({"foo": "bar", "spam": "eggs"})
