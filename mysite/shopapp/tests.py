@@ -38,6 +38,7 @@ class OrderDetailViewTestCase(TestCase):
         self.order.delete()
         self.product.delete()
 
+
     def test_order_details(self):
         url = reverse('shopapp:order_details', args=[self.order.pk])
         response = self.client.get(url)
