@@ -5,13 +5,21 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, UpdateView
 
-from .models import Profile
+from myauth.models import Profile
+from myauth.forms import ProfileForm
 
 
 class AboutMeView(TemplateView):
     template_name = 'myauth/about-me.html'
+
+
+class UpdateAboutMeView(UpdateView):
+    model = Profile
+    template_name = 'myauth/about-me_update_form.html'
+    form_class = ProfileForm
+    success_url = reverse_lazy('myauth:about-me')
 
 
 class RegisterView(CreateView):

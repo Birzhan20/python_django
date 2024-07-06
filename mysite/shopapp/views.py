@@ -5,8 +5,8 @@ from django.contrib.auth.models import Group
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
-from .models import Product, Order
-from .forms import ProductForm, CreateOrder, GroupForm
+from shopapp.models import Product, Order, ProductImage
+from shopapp.forms import ProductForm, CreateOrder, GroupForm
 from django.views import View
 
 
@@ -41,28 +41,38 @@ class GroupListView(View):
 
 class ProductDetailView(DetailView):
     template_name = 'shopapp/products-details.html'
-    model = Product
+    queryset = Product.objects.prefetch_related('images')
     context_object_name = 'product'
 
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
     model = Product
-    fields = 'name', 'price', 'description', 'discount'
+    fields = 'name', 'price', 'description', 'discount', 'preview'
     permission_required = "shopapp.add_product"
     success_url = reverse_lazy('shopapp:products_list')
 
 
 class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Product
-    fields = 'name', 'price', 'description', 'discount'
+    # fields = 'name', 'price', 'description', 'discount', 'preview'
     template_name_suffix = '_update_form'
     permission_required = 'shopapp.change_product'
+    form_class = ProductForm
 
     def get_success_url(self):
         return reverse(
             'shopapp:product_details',
             kwargs={'pk': self.object.pk},
         )
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        for image in form.files.getlist("images"):
+            ProductImage.objects.create(
+                product=self.object,
+                image=image,
+            )
+        return response
 
     def test_func(self):
         obj = self.get_object()

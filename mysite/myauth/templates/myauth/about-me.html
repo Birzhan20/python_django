@@ -13,7 +13,25 @@
         <p>Last name: {{ user.last_name }}</p>
         <p>Email: {{ user.email }}</p>
         <p>Bio: {{ user.profile.bio }}</p>
+        {% if profile.preview %}
+            <img src="{{ profile.preview.url }}" alt="{{ profile.preview.name }}">
+        {% endif %}
+        <h3>Images:</h3>
+        <div>
+            {% for img in profile.images.all %}
+                <div>
+                    <img src="{{ img.image.url }}" alt="{{ img.image.name }}">
+                    <div>{{ img.description }}</div>
+                </div>
+            {% empty %}
+                <div>No images uploaded yet</div>
+            {% endfor %}
+        </div>
+    <div>
+        <a href="{% url 'myauth:about-me_update_form' pk=user.pk %}">Update profile</a>
+    </div>
     {% else %}
         <h2>User is anonymous</h2>
     {% endif %}
+
 {% endblock %}

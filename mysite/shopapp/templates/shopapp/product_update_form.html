@@ -7,7 +7,7 @@
 {% block body %}
     <h1>Update product</h1>
     <div>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Update</button>
@@ -19,7 +19,7 @@
 
     {% if perms.shopapp.add_product %}
     <div>
-        <a href="{% url 'shopapp:create_product' %}">Create new product</a>
+        <a href="{% url 'shopapp:product_create' %}">Create new product</a>
     </div>
     {% endif %}
 
