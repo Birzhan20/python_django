@@ -8,25 +8,19 @@
     <h1>User info</h1>
     {% if user.is_authenticated %}
         <h2>Detail</h2>
-        <p>Username: {{ user.username }}</p>
-        <p>First name: {{ user.first_name }}</p>
-        <p>Last name: {{ user.last_name }}</p>
-        <p>Email: {{ user.email }}</p>
-        <p>Bio: {{ user.profile.bio }}</p>
-        {% if profile.preview %}
-            <img src="{{ profile.preview.url }}" alt="{{ profile.preview.name }}">
+        <p>Username: {{ profile.user.username }}</p>
+        <p>First name: {{ profile.first_name }}</p>
+        <p>Last name: {{ profile.last_name }}</p>
+        <p>Email: {{ profile.email }}</p>
+        <p>Bio: {{ profile.bio }}</p>
+        <h3>Avatar:</h3>
+        {% if profile.image %}
+            <img src="{{ profile.image.url }}" alt="{{ profile.image.name }}">
+        {% else %}
+            <p>No image yet</p>
         {% endif %}
-        <h3>Images:</h3>
-        <div>
-            {% for img in profile.images.all %}
-                <div>
-                    <img src="{{ img.image.url }}" alt="{{ img.image.name }}">
-                    <div>{{ img.description }}</div>
-                </div>
-            {% empty %}
-                <div>No images uploaded yet</div>
-            {% endfor %}
-        </div>
+
+
     <div>
         <a href="{% url 'myauth:about-me_update_form' pk=user.pk %}">Update profile</a>
     </div>

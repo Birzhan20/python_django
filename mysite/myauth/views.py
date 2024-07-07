@@ -13,6 +13,16 @@ from myauth.forms import ProfileForm
 
 class AboutMeView(TemplateView):
     template_name = 'myauth/about-me.html'
+    context_object_name = 'profile'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            profile = Profile.objects.get(user=self.request.user)
+        except Profile.DoesNotExist:
+            profile = None
+        context['profile'] = profile
+        return context
 
 
 class UpdateAboutMeView(UpdateView):
