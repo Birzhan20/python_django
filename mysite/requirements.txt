@@ -1,0 +1,17 @@
+asgiref==3.8.1
+certifi==2024.2.2
+charset-normalizer==3.3.2
+Django==5.0.4
+django-ratelimit==4.1.0
+future==1.0.0
+idna==3.6
+peewee==3.17.1
+pefile==2021.9.3
+pewee==0.1.0.dev9
+pillow==10.4.0
+pyTelegramBotAPI==4.9.0
+python-dotenv==0.21.1
+requests==2.31.0
+sqlparse==0.5.0
+tzdata==2024.1
+urllib3==2.2.1

@@ -12,6 +12,7 @@ from .views import (
     FooBarView,
     UpdateAboutMeView,
     UserListView,
+    HelloView,
 )
 
 
@@ -24,6 +25,7 @@ urlpatterns = [
              redirect_authenticated_user=True,
          ),
          name='login'),
+    path('hello/', HelloView.as_view(), name='hello'),
     path('logout/', logout_view, name='logout'),
     path('cookie/get/', get_cookie_view, name='cookie-get'),
     path('cookie/set/', set_cookie_view, name='cookie-set'),

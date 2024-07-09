@@ -1,0 +1,122 @@
+[
+  {
+    "model": "shopapp.product",
+    "pk": 3,
+    "fields": {
+      "name": "Laptop",
+      "description": "",
+      "price": "1999.00",
+      "discount": 0,
+      "created_at": "2024-04-16T17:06:39.083Z",
+      "archived": false
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 4,
+    "fields": {
+      "name": "Desktop",
+      "description": "",
+      "price": "2599.00",
+      "discount": 10,
+      "created_at": "2024-04-16T17:06:39.083Z",
+      "archived": false
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 5,
+    "fields": {
+      "name": "Smartphone",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis convallis arcu. Donec molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis convallis arcu. Donec molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna.",
+      "price": "987.00",
+      "discount": 25,
+      "created_at": "2024-04-16T17:06:39.083Z",
+      "archived": false
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 6,
+    "fields": {
+      "name": "tryhm",
+      "description": "uvisbsb",
+      "price": "45621.00",
+      "discount": 0,
+      "created_at": "2024-05-29T02:44:37.345Z",
+      "archived": false
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 7,
+    "fields": {
+      "name": "999",
+      "description": "852",
+      "price": "999.00",
+      "discount": 10,
+      "created_at": "2024-05-29T03:23:50.657Z",
+      "archived": true
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 8,
+    "fields": {
+      "name": "8888",
+      "description": "888",
+      "price": "888.00",
+      "discount": 15,
+      "created_at": "2024-05-29T03:25:55.509Z",
+      "archived": true
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 9,
+    "fields": {
+      "name": "Alisa",
+      "description": "Siri's friend",
+      "price": "556.00",
+      "discount": 10,
+      "created_at": "2024-06-12T09:18:22.687Z",
+      "archived": false
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 10,
+    "fields": {
+      "name": "Alisa",
+      "description": "Siri's friend",
+      "price": "556.00",
+      "discount": 10,
+      "created_at": "2024-06-12T09:20:17.034Z",
+      "archived": false
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 11,
+    "fields": {
+      "name": "Alisa",
+      "description": "Siri's friend",
+      "price": "556.00",
+      "discount": 10,
+      "created_at": "2024-06-12T09:20:23.519Z",
+      "archived": false
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 12,
+    "fields": {
+      "name": "Alisa",
+      "description": "Siri's friend",
+      "price": "556.00",
+      "discount": 10,
+      "created_at": "2024-06-12T09:44:06.839Z",
+      "archived": false
+    }
+  }
+]

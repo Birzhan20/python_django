@@ -6,9 +6,16 @@ from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView
+from django.utils.translation import gettext as _
 
 from myauth.models import Profile
 from myauth.forms import ProfileForm
+
+
+class HelloView(View):
+    def get(self, request):
+        welcome_message = _('Hello World!')
+        return HttpResponse(f'<h1>{welcome_message}</h1>')
 
 
 class AboutMeView(TemplateView):
