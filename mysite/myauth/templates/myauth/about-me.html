@@ -24,6 +24,9 @@
     <div>
         <a href="{% url 'myauth:about-me_update_form' pk=user.pk %}">Update profile</a>
     </div>
+    <div>
+        <a href="{% url 'myauth:user-list' %}">Profiles</a>
+    </div>
     {% else %}
         <h2>User is anonymous</h2>
     {% endif %}

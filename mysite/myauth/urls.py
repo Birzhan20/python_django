@@ -11,6 +11,7 @@ from .views import (
     RegisterView,
     FooBarView,
     UpdateAboutMeView,
+    UserListView,
 )
 
 
@@ -31,6 +32,7 @@ urlpatterns = [
     path('session/get/', get_session_view, name='session-get'),
     path('about-me/', AboutMeView.as_view(), name='about-me'),
     path('about-me/update/<int:pk>', UpdateAboutMeView.as_view(), name='about-me_update_form'),
+    path('user-list/', UserListView.as_view(), name='user-list'),
 
     path('register/', RegisterView.as_view(), name='register'),
 
