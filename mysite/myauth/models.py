@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 def profile_images_directory_path(instance, filename):
     return "users/user_{id}/images/{filename}".format(
-        id=instance.user.id,
+        id=instance.id,
         filename=filename,
     )
 
@@ -15,7 +15,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=50, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
     email = models.EmailField(max_length=50, blank=True)
-    image = models.ImageField(null=True, blank=False, upload_to=profile_images_directory_path)
+    image = models.ImageField(null=True, blank=True, upload_to=profile_images_directory_path)
 
     agreement_accepted = models.BooleanField(default=False)
 
