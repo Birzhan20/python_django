@@ -11,9 +11,9 @@ urlpatterns = [
 
 ]
 
-urlpatterns += (
-    path('accaunts/', include('myauth.urls')),
-)
+urlpatterns += [
+    path('accounts/', include('myauth.urls')),
+]
 
 if settings.DEBUG:
     urlpatterns += static(

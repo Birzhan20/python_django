@@ -6,16 +6,28 @@ from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _, ngettext
 
 from myauth.models import Profile
 from myauth.forms import ProfileForm
 
 
 class HelloView(View):
+    welcome_message = _('welcome hello World!')
+
     def get(self, request):
-        welcome_message = _('Hello World!')
-        return HttpResponse(f'<h1>{welcome_message}</h1>')
+        items_str = request.GET.get('items') or 0
+        items = int(items_str)
+        products_line = ngettext(
+            'one product',
+            '{count} products',
+            items,
+        )
+        products_line = products_line.format(count=items)
+        return HttpResponse(
+            f'<h1>{self.welcome_message}</h1>',
+            f'\n<h2>{products_line}</h2>',
+        )
 
 
 class AboutMeView(TemplateView):
