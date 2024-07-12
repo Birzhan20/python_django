@@ -6,14 +6,15 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('shop/', include('shopapp.urls')),
+
     path('req/', include('requestdataapp.urls')),
 
 ]
 
-urlpatterns += [
+urlpatterns += i18n_patterns(
     path('accounts/', include('myauth.urls')),
-]
+    path('shop/', include('shopapp.urls')),
+)
 
 if settings.DEBUG:
     urlpatterns += static(

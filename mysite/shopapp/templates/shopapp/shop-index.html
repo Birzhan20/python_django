@@ -17,6 +17,13 @@
         {% endfor %}
     </ul>
     </div>
+
+    <div>
+        <strong>
+            You have {{ items }} cherr{{ items|pluralize:'y,ies' }}
+        </strong>
+    </div>
+
         {% endautoescape %}
 
     <div>

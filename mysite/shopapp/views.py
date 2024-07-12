@@ -9,6 +9,10 @@ from shopapp.models import Product, Order, ProductImage
 from shopapp.forms import ProductForm, CreateOrder, GroupForm
 from django.views import View
 
+from os import listdir
+from os.path import isfile, join
+import os
+
 
 class ShopIndexView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
@@ -19,7 +23,8 @@ class ShopIndexView(View):
         ]
         context = {
             "time_running": default_timer(),
-            "products": products
+            "products": products,
+            "items": 5
         }
         return render(request, 'shopapp/shop-index.html', context=context)
 
@@ -43,6 +48,26 @@ class ProductDetailView(DetailView):
     template_name = 'shopapp/products-details.html'
     queryset = Product.objects.prefetch_related('images')
     context_object_name = 'product'
+
+    from os import listdir
+    from os.path import isfile, join
+    import os
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        product = self.get_object()
+
+        # Define the directory path
+        base_path = os.path.join('uploads', 'products', f'product_{product.id}', 'preview')
+
+        try:
+            # Считаем количество изображений в директории
+            images_count = len([f for f in listdir(base_path) if isfile(join(base_path, f))])
+        except FileNotFoundError:
+            images_count = 0
+
+        context['images_count'] = images_count
+        return context
 
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):

@@ -25,7 +25,7 @@ class HelloView(View):
         )
         products_line = products_line.format(count=items)
         return HttpResponse(
-            f'<h1>{self.welcome_message}</h1>',
+            f'<h1>{self.welcome_message}</h1>'
             f'\n<h2>{products_line}</h2>',
         )
 
