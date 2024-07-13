@@ -5,13 +5,55 @@ from django.contrib.auth.models import Group
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
+from rest_framework import viewsets
+
 from shopapp.models import Product, Order, ProductImage
 from shopapp.forms import ProductForm, CreateOrder, GroupForm
 from django.views import View
+from rest_framework.viewsets import ModelViewSet
+from .serializers import ProductSerializer, OrderSerializer
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 from os import listdir
 from os.path import isfile, join
 import os
+
+
+class OrderViewSet(ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    search_fields = ['user', 'products']
+    filterset_fields = ['user', 'products', 'promocode', 'delivery_address', 'created_at',]
+    ordering_fields = [
+        'user',
+        'products',
+        'created_at',
+        ]
+
+
+class ProductViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = [
+        SearchFilter,#не регистрозависимый
+        DjangoFilterBackend,#полное совпадение ищет
+        OrderingFilter, #sort
+    ]
+    search_fields = ['name', 'description']
+    filterset_fields = [
+        'name',
+        'description',
+        'price',
+        'discount',
+        'archived',
+    ]
+    ordering_fields = [
+        'name',
+        'price',
+        'discount',
+    ]
 
 
 class ShopIndexView(View):
