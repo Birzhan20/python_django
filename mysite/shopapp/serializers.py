@@ -17,6 +17,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "preview",
         )
 
+#something
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
