@@ -1,11 +1,16 @@
+"""
+Различные модули представления.
+
+Разные View интернет магазина: по товарам, заказам и тд.
+"""
+
 from timeit import default_timer
-from django.shortcuts import render, redirect, reverse, get_list_or_404
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import Group
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
-from rest_framework import viewsets
 
 from shopapp.models import Product, Order, ProductImage
 from shopapp.forms import ProductForm, CreateOrder, GroupForm
@@ -14,6 +19,7 @@ from rest_framework.viewsets import ModelViewSet
 from .serializers import ProductSerializer, OrderSerializer
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema, OpenApiResponse
 
 from os import listdir
 from os.path import isfile, join
@@ -33,7 +39,12 @@ class OrderViewSet(ModelViewSet):
         ]
 
 
+@extend_schema(description="Product view CRUD")
 class ProductViewSet(ModelViewSet):
+    """
+    Набор представлений для действий над Product
+    Полный CRUD для сущнотей товара
+    """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [
@@ -54,6 +65,17 @@ class ProductViewSet(ModelViewSet):
         'price',
         'discount',
     ]
+
+    @extend_schema(
+        summary="Get one product by id",
+        description="Retrieves **product**, return 404 if not found",
+        responses={
+            200: ProductSerializer,
+            404: OpenApiResponse(description="Empty response, product by id not found"),
+        }
+    )
+    def retrieve(self, *args, **kwargs):
+        return super().retrieve(*args, **kwargs)
 
 
 class ShopIndexView(View):
