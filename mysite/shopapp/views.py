@@ -113,9 +113,6 @@ class ProductDetailView(DetailView):
     queryset = Product.objects.prefetch_related('images')
     context_object_name = 'product'
 
-    from os import listdir
-    from os.path import isfile, join
-    import os
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

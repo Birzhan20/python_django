@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-12 07:45+0500\n"
+"POT-Creation-Date: 2024-07-15 07:26+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\blogapp\templates\blogapp\article_list.html:8
+msgid "Articles"
+msgstr "Articles"
+
+#: .\blogapp\templates\blogapp\article_list.html:14
+msgid "Published on"
+msgstr "Published on"
+
+#: .\blogapp\templates\blogapp\article_list.html:15
+msgid "Author"
+msgstr "Author"
+
+#: .\blogapp\templates\blogapp\article_list.html:16
+msgid "Category"
+msgstr "Category"
+
+#: .\blogapp\templates\blogapp\article_list.html:17
+msgid "Tags"
+msgstr "Tags"
+
+#: .\blogapp\templates\blogapp\article_list.html:26
+msgid "No articles available"
+msgstr "No articles available"
 
 #: .\myauth\views.py:16
 msgid "welcome hello World!"
@@ -29,30 +53,30 @@ msgid_plural "{count} products"
 msgstr[0] "One product"
 msgstr[1] "{count} products"
 
-#: .\mysite\settings.py:132
+#: .\mysite\settings.py:140
 msgid "English"
 msgstr "English"
 
-#: .\mysite\settings.py:133
+#: .\mysite\settings.py:141
 msgid "Russian"
 msgstr "Russian"
 
-#: .\shopapp\models.py:17 .\shopapp\templates\shopapp\products-details.html:6
+#: .\shopapp\models.py:22 .\shopapp\templates\shopapp\products-details.html:6
 #: .\shopapp\templates\shopapp\products-details.html:10
 #, fuzzy
 #| msgid "Products"
 msgid "Product"
 msgstr "Products"
 
-#: .\shopapp\models.py:18 .\shopapp\templates\shopapp\products-list.html:10
+#: .\shopapp\models.py:23 .\shopapp\templates\shopapp\products-list.html:10
 msgid "Products"
 msgstr "Products"
 
-#: .\shopapp\models.py:54
+#: .\shopapp\models.py:59
 msgid "Order"
 msgstr ""
 
-#: .\shopapp\models.py:55
+#: .\shopapp\models.py:60
 msgid "Orders"
 msgstr ""
 

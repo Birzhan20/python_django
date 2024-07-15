@@ -14,12 +14,12 @@ urlpatterns = [
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('api/', include('myapiapp.urls')),
     path('req/', include('requestdataapp.urls')),
-
 ]
 
 urlpatterns += i18n_patterns(
     path('accounts/', include('myauth.urls')),
     path('shop/', include('shopapp.urls')),
+    path('blog/', include('blogapp.urls')),
 )
 
 if settings.DEBUG:
