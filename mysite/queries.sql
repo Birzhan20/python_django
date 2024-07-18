@@ -16,7 +16,7 @@ SELECT "shopapp_productimage"."id",
        "shopapp_productimage"."description"
 FROM "shopapp_productimage"
 WHERE "shopapp_productimage"."product_id" IN (13);
-args
+
 
 
 
