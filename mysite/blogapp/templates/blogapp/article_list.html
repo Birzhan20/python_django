@@ -8,15 +8,15 @@
 
 {% block body %}
     <h1>{% translate 'Articles' %}:</h1>
-    {% if articles %}
+    {% if object_list %}
         <div>
-            {% for article in articles %}
+            {% for article in object_list %}
                 <div>
-                    <h2>{{ article.title }}</h2>
-                    <p>{% translate 'Published on' %}: {{ article.pub_date|date:"D d M Y H:i:s" }}</p>
-                    <p>{% translate 'Author' %}: {{ article.author.name }}</p>
-                    <p>{% translate 'Category' %}: {{ article.category.name }}</p>
-                    <p>{% translate 'Tags' %}:
+                    <a href="{% url "blogapp:article" pk=article.pk %}">{{ article.title }}</a>
+                    <p>{% translate 'Published on' %}: {{ article.published_at|date:"D d M Y H:i:s" }}</p>
+<!--                    <p>{% translate 'Author' %}: {{ article.author.name }}</p>-->
+<!--                    <p>{% translate 'Category' %}: {{ article.category.name }}</p>-->
+<!--                    <p>{% translate 'Tags' %}:-->
                         {% for tag in article.tags.all %}
                             {{ tag.name }}{% if not forloop.last %}, {% endif %}
                         {% endfor %}

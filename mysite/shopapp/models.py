@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 
@@ -29,8 +30,11 @@ class Product(models.Model):
     archived = models.BooleanField(default=False)
     preview = models.ImageField(null=True, blank=True, upload_to=product_preview_directory_path)
 
-    def __str__(self)->str:
+    def __str__(self) -> str:
         return f"Product(pk={self.pk}, name={self.name!r})"
+
+    def get_absolute_url(self):
+        return reverse("shopapp:product", kwargs={"pk": self.pk})
 
 
 def product_images_directory_path(instance, filename):
