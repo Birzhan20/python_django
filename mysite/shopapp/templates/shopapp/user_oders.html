@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load cache %}
+
+{% block title %}
+    Orders of {{ owner.username }}
+{% endblock %}
+
+{% block content %}
+    <h1>Orders of {{ owner.username }}</h1>
+    {% if orders %}
+        {% cache 300 owner_orders owner.pk %}
+            <ul>
+                {% for order in orders %}
+                    <li>{{ order }}</li>
+                {% endfor %}
+            </ul>
+        {% endcache %}
+    {% else %}
+        <p>{{ owner.username }} has no orders yet.</p>
+    {% endif %}
+{% endblock %}
