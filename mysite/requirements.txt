@@ -11,11 +11,13 @@ docutils==0.21.2
 drf-spectacular==0.27.2
 flake8==7.1.0
 future==1.0.0
+gunicorn==22.0.0
 idna==3.6
 inflection==0.5.1
 jsonschema==4.23.0
 jsonschema-specifications==2023.12.1
 mccabe==0.7.0
+packaging==24.1
 peewee==3.17.1
 pefile==2021.9.3
 pewee==0.1.0.dev9
@@ -29,9 +31,8 @@ PyYAML==6.0.1
 referencing==0.35.1
 requests==2.31.0
 rpds-py==0.19.0
-sentry-sdk==2.10.0
+sentry-sdk==1.4.0
 sqlparse==0.5.0
 tzdata==2024.1
 uritemplate==4.1.1
 urllib3==2.2.1
-gunicorn==22.0.0
