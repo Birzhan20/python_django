@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "mysite"
+version = "0.1.0"
+description = ""
+authors = ["BIRZHAN <birzhan981@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "5.0.4"
+django-rest-framework = "^0.1.0"
+django-filter = "^24.2"
+django-debug-toolbar = "^4.4.6"
+pillow = "^10.4.0"
+gunicorn = "^22.0.0"
+sentry-sdk = "^2.10.0"
+drf-spectacular = "^0.27.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
